@@ -1,1 +1,2 @@
-proglib/db.sqlite3
+/proglib/db.sqlite3
+__pycache__/
