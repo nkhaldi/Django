@@ -35,7 +35,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'my_site.urls'
+ROOT_URLCONF = 'stihi.urls'
 
 TEMPLATES = [
     {
@@ -53,7 +53,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'my_site.wsgi.application'
+WSGI_APPLICATION = 'stihi.wsgi.application'
 
 # Database
 DATABASES = {
