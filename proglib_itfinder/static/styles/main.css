@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-.site-footer{
+.site-footer {
     bottom: 0;
     left: 0;
     right: 0;
@@ -15,102 +15,117 @@
     padding-top: 40px;
     color: #fff;
 }
-.footer-content{
+
+.footer-content {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     text-align: center;
 }
-.footer-content h3{
+
+.footer-content h3 {
     font-size: 2.1rem;
     font-weight: 500;
     line-height: 3rem;
 }
-.footer-content p{
+
+.footer-content p {
     max-width: 500px;
     margin: 10px auto;
     line-height: 28px;
     font-size: 14px;
     color: #cacdd2;
 }
-.socials{
+
+.socials {
     list-style: none;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 1rem 0 3rem 0;
 }
-.socials li{
+
+.socials li {
     margin: 0 10px;
 }
-.socials a{
+
+.socials a {
     text-decoration: none;
     color: #fff;
     padding: 5px;
 
 }
-.socials a i{
+
+.socials a i {
     font-size: 3rem;
     width: 20px;
     transition: color .4s ease;
 
 }
-.socials a:hover i{
+
+.socials a:hover i {
     color: #5aa5b9;
 }
 
-.footer-bottom{
+.footer-bottom {
   background-color: var(--color-sub-light);
   width: 100vw;
   padding: 20px;
   padding-bottom: 40px;
   text-align: center;
 }
-.footer-bottom p{
+
+.footer-bottom p {
   color:#fff;
-float: left;
-    font-size: 14px;
-    word-spacing: 2px;
+  float: left;
+  font-size: 14px;
+  word-spacing: 2px;
 }
-.footer-bottom p a{
+
+.footer-bottom p a {
   color:#5aa5b9;
   font-size: 16px;
   text-decoration: none;
 }
-.footer-bottom span{
+
+.footer-bottom span {
     text-transform: uppercase;
     opacity: .4;
     font-weight: 200;
 }
-.footer-menu{
-  float: right;
 
+.footer-menu {
+  float: right;
 }
-.footer-menu ul{
+
+.footer-menu ul {
   display: flex;
 }
-.footer-menu ul li{
-padding-right: 10px;
-display: block;
+
+.footer-menu ul li {
+  padding-right: 10px;
+  display: block;
 }
-.footer-menu ul li a{
+
+.footer-menu ul li a {
   color: #cfd2d6;
   text-decoration: none;
 }
-.footer-menu ul li a:hover{
+
+.footer-menu ul li a:hover {
   color: #5aa5b9;
 }
 
 @media (max-width:500px) {
-.footer-menu ul{
-  display: flex;
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
+  .footer-menu ul {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
 }
 
-h1{
+h1 {
     color: purple;
 }
 
@@ -140,7 +155,6 @@ img {
   max-width: 85rem;
   margin: 0 auto;
 }
-
 
 .header {
   position: sticky;
@@ -198,7 +212,6 @@ img {
   .toggle-menu {
     position: relative;
   }
-
   .toggle-menu > span {
     display: block;
     position: fixed;
@@ -213,7 +226,6 @@ img {
     height: 5rem;
     border-radius: 50%;
   }
-
   .toggle-menu__lines,
   .toggle-menu__lines::before,
   .toggle-menu__lines::after {
@@ -229,7 +241,6 @@ img {
     background: var(--color-light);
     transition: all 0.3s ease-in-out;
   }
-
   .toggle-menu__lines::before {
     top: 3.4rem;
     transform-origin: 0 0;
@@ -238,22 +249,18 @@ img {
     top: 4.6rem;
     transform-origin: 0 0;
   }
-
   .header__nav input[type='checkbox']:checked + .toggle-menu > .toggle-menu__lines::before {
     margin-left: 3px;
     transform: rotate(45deg) scaleX(1.2) translateX(-2px) translateY(-4px);
     visibility: visible;
   }
-
   .header__nav input[type='checkbox']:checked + .toggle-menu > .toggle-menu__lines {
     visibility: hidden;
   }
-
   .header__nav input[type='checkbox']:checked + .toggle-menu > .toggle-menu__lines::after {
     transform: rotate(-45deg) scaleX(1.2) translateX(-2px) translateY(3px);
     visibility: visible;
   }
-
   .header__nav > ul {
     opacity: 0;
     pointer-events: none;
@@ -267,19 +274,16 @@ img {
     background: var(--color-sub);
     transition: all 0.5s ease-in-out;
   }
-
   .header__menuItem a {
     transition: all 0.5s ease-in-out;
     padding: 1rem 3rem;
   }
-
   .header__menuItem a:hover {
     padding: 1rem 3rem;
     border-radius: 3px;
     background: var(--color-sub-light);
   }
 }
-
 
 .hero-section {
   height: 40vh;
@@ -361,14 +365,12 @@ img {
     gap: 0;
     align-items: stretch;
   }
-
   .hero-section__search > .form input.input--text,
   .hero-section__search > .form input {
     min-width: 100%;
     width: 100%;
   }
 }
-
 
 .devlist {
   margin-top: 8rem;
@@ -403,7 +405,6 @@ img {
   text-align: justify;
 }
 
-
 .pagination {
   margin-top: 8rem;
   margin-bottom: 10rem;
@@ -425,7 +426,6 @@ img {
 .pagination .btn.btn--sub {
   color: var(--color-light);
 }
-
 
 .profile .card > .dev {
   padding: 4rem;
@@ -503,13 +503,10 @@ img {
     justify-content: space-between;
     gap: 3rem;
   }
-
   .devSkill__info {
     flex-basis: 80%;
   }
 }
-
-
 
 .singleProject .column--1of3 {
   order: 2;
@@ -566,12 +563,12 @@ img {
   margin-bottom: 3rem;
 }
 
-.project__author{
+.project__author {
   font-size: 1.4rem;
   font-style: italic;
 }
 
-.project--rating{
+.project--rating {
   margin-bottom: 1.6em;
   margin-top: .5em;
 }
@@ -583,7 +580,6 @@ img {
   color: var(--color-sub-light);
   margin-bottom: 1rem;
 }
-
 
 .projects > .hero-section {
   background: var(--color-sub-lighter);
@@ -607,7 +603,6 @@ img {
   margin-top: 8rem;
 }
 
-
 .project__thumbnail {
   height: 25rem;
   object-fit: cover;
@@ -625,7 +620,6 @@ img {
   font-size: 1.4rem;
   text-align: justify;
 }
-
 
 .comments {
   margin-top: 4rem;
@@ -658,8 +652,6 @@ img {
 .comment__info {
   font-size: 1.45rem;
 }
-
-
 
 .settingsPage .dev > .settings__btn {
   display: inline-block;
@@ -709,7 +701,7 @@ img {
   object-fit: contain;
 }
 
-.settings__tableInfo{
+.settings__tableInfo {
   width: 100%;
 }
 
@@ -729,8 +721,6 @@ img {
 .settings__tableActions {
   text-align: right;
 }
-
-
 
 .auth {
   width: 100%;
@@ -799,6 +789,7 @@ img {
   align-items: center;
   margin: 2.5rem 0;
 }
+
 .auth .auth__actions a {
   text-decoration: underline;
 }
@@ -807,7 +798,6 @@ img {
   font-size: 2rem;
   font-weight: 500;
 }
-
 
 .inbox {
   height: 90vh;
@@ -871,7 +861,6 @@ img {
   text-align: right;
 }
 
-
 .messagePage .message {
   list-style: none;
   background: var(--color-white);
@@ -914,8 +903,6 @@ img {
   font-size: 1.8rem;
 }
 
-
-
 .formPage .formWrapper {
   list-style: none;
   background: var(--color-white);
@@ -931,14 +918,10 @@ img {
   margin-top: 2rem;
 }
 
-
-
 .alert {
   position: fixed;
   left: 50%;
   top: 120px;
   transform: translate(-50%, -50%);
-
-
   z-index: 99999;
 }
