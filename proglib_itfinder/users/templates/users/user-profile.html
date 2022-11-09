@@ -15,26 +15,30 @@
             <ul class="dev__social">
               {% if profile.github %}
                 <li>
-                  <a title="Github" href="{{ profile.github }}" target="_blank"><i
-                      class="im im-github"></i></a>
+                  <a title="Github" href="{{ profile.github }}" target="_blank">
+                    <i class="im im-github"></i>
+                  </a>
                 </li>
               {% endif %}
               {% if profile.twitter %}
                 <li>
-                  <a title="Twitter" href="{{ profile.twitter }}" target="_blank"><i
-                      class="im im-twitter"></i></a>
+                  <a title="Twitter" href="{{ profile.twitter }}" target="_blank">
+                    <i class="im im-twitter"></i>
+                  </a>
                 </li>
               {% endif %}
               {% if profile.linkedin %}
                 <li>
-                  <a title="LinkedIn" href="{{ profile.linkedin }}" target="_blank"><i
-                      class="im im-linkedin"></i></a>
+                  <a title="LinkedIn" href="{{ profile.linkedin }}" target="_blank">
+                    <i class="im im-linkedin"></i>
+                  </a>
                 </li>
               {% endif %}
               {% if profile.website %}
                 <li>
-                  <a title="Личный сайт" href="{{ profile.website }}" target="_blank"><i
-                      class="im im-globe"></i></a>
+                  <a title="Личный сайт" href="{{ profile.website }}" target="_blank">
+                    <i class="im im-globe"></i>
+                  </a>
                 </li>
               {% endif %}
             </ul>
@@ -74,17 +78,17 @@
             {% for project in profile.project_set.all %}
               <div class="column">
                 <div class="card project">
-                  <a href="{% url 'project' project.id %}" class="project">
+                  <a href="{% url 'project' project.slug %}" class="project">
                     <img class="project__thumbnail" src="{{ project.image.url }}"
                       alt="project thumbnail" />
                     <div class="card__body">
                       <h3 class="project__title">{{ project.title }}</h3>
                       <p><a class="project__author"
-                          href="{% url 'user-profile' project.owner.id %}">Разработчик:
-                          {{ project.owner.name }}</a>
+                          href="{% url 'user-profile' project.owner %}">Разработчик: {{ project.owner.name }}
+                        </a>
                       </p>
                       <p class="project--rating">
-                        <span style="font-weight: bold;">положительные отзывы</span>{{ project.votes_ratio }}% всего отзывов{{ project.total_votes }}
+                        <span style="font-weight: bold;">Положительные отзывы</span>{{ project.votes_ratio }}% Всего отзывов{{ project.total_votes }}
                       </p>
                       <div class="project__tags">
                         {% for tag in project.tags.all %}

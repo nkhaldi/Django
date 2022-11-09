@@ -43,7 +43,6 @@
 }
 .socials li{
     margin: 0 10px;
-
 }
 .socials a{
     text-decoration: none;
@@ -54,8 +53,6 @@
 .socials a i{
     font-size: 3rem;
     width: 20px;
-
-
     transition: color .4s ease;
 
 }
@@ -64,7 +61,6 @@
 }
 
 .footer-bottom{
-    
   background-color: var(--color-sub-light);
   width: 100vw;
   padding: 20px;
@@ -76,7 +72,6 @@
 float: left;
     font-size: 14px;
     word-spacing: 2px;
-  
 }
 .footer-bottom p a{
   color:#5aa5b9;
@@ -163,7 +158,6 @@ img {
 .header__logo {
   font-size: 3rem;
   font-weight: 300;
-  
 }
 
 .header__nav > ul {
