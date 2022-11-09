@@ -26,4 +26,3 @@ def profiles_by_skill(request, skill_slug):
         'profiles': profiles
     }
     return render(request, "users/profiles.html", context)
-    
