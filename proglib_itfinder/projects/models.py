@@ -1,5 +1,6 @@
-from django.db import models
 import uuid
+from django.db import models
+from users.models import Profile
 
 
 class Tag(models.Model):
@@ -13,6 +14,7 @@ class Tag(models.Model):
 
 
 class Project(models.Model):
+    owner = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     slug = models.SlugField()
     image = models.ImageField(null=True, blank=True, default="project_images/default.jpg", upload_to='project_images')
