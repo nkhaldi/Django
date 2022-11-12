@@ -6,7 +6,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-11vubpzxdmfb#!fxv3ztckm-3pp&(=%ir044wcfy(t2vzo_duf'
+SECRET_KEY = 'django-insecure-xi@$j8n80e0!_!ejrvsm7givxg_i8ingh*bqzn92@l^le-$)ss'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -84,7 +84,6 @@ LANGUAGE_CODE = 'en-us'
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
