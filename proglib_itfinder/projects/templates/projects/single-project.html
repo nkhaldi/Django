@@ -9,18 +9,18 @@
         <h3 class="singleProject__subtitle">Платформа и стек</h3>
         <div class="singleProject__toolStack">
           {% for tag in project.tags.all %}
-            <a href="{% url 'tag' tag.slug %}" class="tag tag--pill tag--sub tag--lg">{{tag}}</a>
+            <a href="{% url 'tag' tag.slug %}" class="tag tag--pill tag--sub tag--lg">{{ tag }}</a>
           {% endfor %}
-        </div>
+          </div>
         {% if project.source_link %}
           <a class="singleProject__liveLink" href="{{ project.source_link }}" target="_blank">
             <i class="im im-external-link"></i>Исходный код на GitHub
           </a>
         {% endif %}
         {% if project.demo_link %}
-        <a class="singleProject__liveLink" href="{{ project.source_link }}" target="_blank">
-          <i class="im im-external-link"></i>Демо-сайт
-        </a>
+          <a class="singleProject__liveLink" href="{{ project.source_link }}" target="_blank">
+            <i class="im im-external-link"></i>Демо-сайт
+          </a>
         {% endif %}
       </div>
       <div class="column column--2of3">
@@ -35,19 +35,19 @@
         </div>
         <div class="comments">
           <h3 class="singleProject__subtitle">Оценки и отзывы</h3>
-          <h5 class="project--rating">Процент положительных отзывов: {{project.votes_ratio}}</h5>
-          <h5 class="project--rating">Всего отзывов: {{project.total_votes}}</h5>
+          <h5 class="project--rating">Процент положительных отзывов: {{ project.votes_ratio }}%</h5>
+          <h5 class="project--rating">Всего отзывов: {{ project.total_votes }}</h5>
           {% if request.user.profile.id in project.reviewers %}
             <p>Вы уже писали отзыв об этом проекте</p>
           {% elif request.user.profile == project.owner %}
             <p>Вы не можете оставлять отзывы к собственным проектам</p>
           {% elif request.user.is_authenticated %}
-            <form class="form" action="{% url 'project' project.id %}" method="POST">
+            <form class="form" action="{% url 'project' project.slug %}" method="POST">
               {% csrf_token %}
               {% for field in form %}
                 <div class="form__field">
                   <label for="formInput#textarea">{{ field.label }}</label>
-                  {{field}}
+                  {{ field }}
                 </div>
               {% endfor %}
               <input class="btn btn--sub btn--lg" type="submit" value="Добавить отзыв" />
@@ -59,12 +59,11 @@
             {% for review in project.review_set.all %}
               {% if review.body %}
                 <div class="comment">
-                  <a href="{% url 'user-profile' review.owner.id  %}">
-                    <img class="avatar avatar--md" src="{{ review.owner.profile_image.url }}" alt="user" />
+                  <a href="{% url 'user-profile' review.owner %}">
+                    <img class="avatar avatar--md" src="{{ review.owner.image.url }}" alt="user" />
                   </a>
                   <div class="comment__details">
-                    <a href="{% url 'user-profile' review.owner.id  %}"
-                      class="comment__author">{{ review.owner.name }}
+                    <a href="{% url 'user-profile' review.owner %}" class="comment__author">{{ review.owner }}
                     </a>
                     <p class="comment__info">{{ review.body|linebreaksbr }}</p>
                   </div>

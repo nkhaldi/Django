@@ -5,7 +5,7 @@
 <main class="formPage my-xl">
   <div class="content-box">
     <div class="formWrapper">
-      <a class="backButton" href="{% url 'user-profile' recipient.username  %}">
+      <a class="backButton" href="{% url 'user-profile' recipient.username %}">
         <i class="im im-angle-left"></i>
       </a><br>
       <form class="form" method="POST">
@@ -28,7 +28,7 @@
           <label for="formInput#text">{{ form.body.label }}</label>
           {{ form.body }}
         </div>
-        <input class="btn btn--sub btn--lg  my-md" type="submit" value="Отправить" />
+        <input class="btn btn--sub btn--lg my-md" type="submit" value="Отправить" />
       </form>
     </div>
   </div>
