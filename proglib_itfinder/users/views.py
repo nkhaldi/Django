@@ -64,6 +64,7 @@ def registerUser(request):
 
     return render(request, 'users/login_register.html', context)
 
+
 def profiles(request):
     profiles, search_query = searchProfiles(request)
     custom_range, profiles = paginateProfiles(request, profiles, 6)
@@ -182,7 +183,7 @@ def inbox(request):
 def viewMessage(request, pk):
     profile = request.user.profile
     message = profile.messages.get(id=pk)
-    if message.is_read == False:
+    if not message.is_read:
         message.is_read = True
         message.save()
 

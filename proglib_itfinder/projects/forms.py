@@ -10,11 +10,11 @@ class ProjectForm(ModelForm):
         labels = {
             'title': 'Название проекта',
             'slug': 'Слаг',
-            'image':'Скриншот проекта',
-            'tags':'Теги',
-            'description':'Описание проекта',
-            'demo_link':'Демо-версия',
-            'source_link':'Исходный код на GitHub'
+            'image': 'Скриншот проекта',
+            'tags': 'Теги',
+            'description': 'Описание проекта',
+            'demo_link': 'Демо-версия',
+            'source_link': 'Исходный код на GitHub'
         }
 
         widgets = {
