@@ -43,7 +43,7 @@
               {% endif %}
             </ul>
             {% if request.user.profile.id != profile.id %}
-              <a href="#" class="btn btn--sub btn--lg">Написать сообщение </a>
+              <a href="{% url 'create-message' profile.username %}" class="btn btn--sub btn--lg">Написать сообщение </a>
             {% endif %}
           </div>
         </div>
@@ -84,8 +84,7 @@
                     <div class="card__body">
                       <h3 class="project__title">{{ project.title }}</h3>
                       <p><a class="project__author"
-                          href="{% url 'user-profile' project.owner %}">Разработчик: {{ project.owner.name }}
-                        </a>
+                          href="{% url 'user-profile' project.owner %}">Разработчик: {{ project.owner.name }}</a>
                       </p>
                       <p class="project--rating">
                         <span style="font-weight: bold;">Положительные отзывы</span>{{ project.votes_ratio }}% Всего отзывов{{ project.total_votes }}
@@ -93,7 +92,7 @@
                       <div class="project__tags">
                         {% for tag in project.tags.all %}
                           <span class="tag tag--pill tag--main">
-                            <small>{{tag}}</small>
+                            <small>{{ tag }}</small>
                           </span>
                         {% endfor %}
                       </div>

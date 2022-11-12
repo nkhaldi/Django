@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.dispatch.dispatcher import receiver
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Profile, Skill
+from .models import Profile, Skill, Message
 from .forms import CustomUserCreationForm, ProfileForm, SkillForm, MessageForm
 
 
@@ -55,8 +55,7 @@ def registerUser(request):
             login(request, user)
             return redirect('edit-account')
         else:
-            messages.success(
-                request, 'Во время регистрации возникла ошибка')
+            messages.success(request, 'Во время регистрации возникла ошибка')
 
     context = {'page': page, 'form': form}
 
@@ -74,7 +73,6 @@ def userProfile(request, username):
     profile = Profile.objects.get(username=username)
     main_skills = profile.skills.all()[:2]
     extra_skills = profile.skills.all()[2:]
-
     context = {'profile': profile, 'main_skills': main_skills, 'extra_skills': extra_skills}
 
     return render(request, 'users/user-profile.html', context)
@@ -93,7 +91,6 @@ def userAccount(request):
     profile = request.user.profile
     skills = profile.skills.all()
     projects = profile.project_set.all()
-
     context = {'profile': profile, 'skills': skills, 'projects': projects}
 
     return render(request, 'users/account.html', context)
@@ -184,6 +181,7 @@ def viewMessage(request, pk):
     if message.is_read == False:
         message.is_read = True
         message.save()
+
     context = {'message': message}
 
     return render(request, 'users/message.html', context)
@@ -215,4 +213,4 @@ def createMessage(request, username):
 
     context = {'recipient': recipient, 'form': form}
 
-    return render(request, 'users/message_form.html', context)    
+    return render(request, 'users/message_form.html', context)

@@ -12,7 +12,7 @@
               <i class="im im-edit"></i>Изменить данные
             </a>
             <img class="avatar avatar--xl dev__avatar" src="{{ profile.image.url }}" />
-            <h2 class="dev__name">{{ profile.name  }}</h2>
+            <h2 class="dev__name">{{ profile.name }}</h2>
             <p class="dev__title">{{ profile.intro }}</p>
             <p class="dev__location">Город: {{ profile.city }}</p>
             <ul class="dev__social">
@@ -25,7 +25,9 @@
               {% endif %}
               {% if profile.twitter %}
                 <li>
-                  <a title="Twitter" href="{{ profile.twitter }}" target="_blank"><i class="im im-twitter"></i></a>
+                  <a title="Twitter" href="{{ profile.twitter }}" target="_blank">
+                    <i class="im im-twitter"></i>
+                  </a>
                 </li>
               {% endif %}
               {% if profile.linkedin %}
@@ -61,16 +63,15 @@
           {% for skill in skills %}
             <tr>
               <td class="settings__tableInfo">
-                <h4>{{skill.name}}</h4>
-                <p>
-                {{skill.description}}
-                </p>
+                <h4>{{ skill.name }}</h4>
+                <p>{{ skill.description }}</p>
               </td>
               <td class="settings__tableActions">
                 <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-skill' skill.slug %}">
-                  <i class="im im-edit"></i> Изменить</a>
+                  <i class="im im-edit"></i>Изменить
+                </a>
                 <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-skill' skill.slug %}">
-                  <i class="im im-x-mark-circle-o"></i> Удалить
+                  <i class="im im-x-mark-circle-o"></i>Удалить
                 </a>
               </td>
             </tr>
@@ -79,7 +80,7 @@
         <div class="settings">
           <h3 class="settings__title">Проекты</h3>
           <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-project' %}">
-            <i class="im im-plus"></i> Добавить проект
+            <i class="im im-plus"></i>Добавить проект
           </a>
         </div>
         <table class="settings__table">
@@ -96,10 +97,10 @@
               </td>
               <td class="settings__tableActions">
                 <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-project' project.id %}">
-                  <i class="im im-edit"></i> Редактировать
+                  <i class="im im-edit"></i>Редактировать
                 </a>
-                <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-project'  project.id %}?next=/account">
-                  <i class="im im-x-mark-circle-o"></i> Удалить
+                <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-project' project.id %}?next=/account">
+                  <i class="im im-x-mark-circle-o"></i>Удалить
                 </a>
               </td>
             </tr>
