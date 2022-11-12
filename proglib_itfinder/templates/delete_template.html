@@ -8,8 +8,8 @@
       <form class="form" action="" method="POST">
         {% csrf_token %}
         <p>Вы действительно хотите удалить "{{ object }}"?</p>
-        <a class="btn btn--sub btn--lg  my-md" href="{{request.GET.next}}">Назад</a>
-        <input class="btn btn--sub btn--lg  my-md" type="submit" value="Удалить" />
+        <a class="btn btn--sub btn--lg my-md" href="{{request.GET.next}}">Назад</a>
+        <input class="btn btn--sub btn--lg my-md" type="submit" value="Удалить" />
       </form>
     </div>
   </div>

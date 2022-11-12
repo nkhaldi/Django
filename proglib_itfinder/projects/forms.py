@@ -16,12 +16,14 @@ class ProjectForm(ModelForm):
             'demo_link':'Демо-версия',
             'source_link':'Исходный код на GitHub'
         }
+
         widgets = {
             'tags': forms.CheckboxSelectMultiple(),
         }
 
     def __init__(self, *args, **kwargs):
         super(ProjectForm, self).__init__(*args, **kwargs)
+
         for name, field in self.fields.items():
             field.widget.attrs.update({'class': 'input'})
 
@@ -30,6 +32,7 @@ class ReviewForm(ModelForm):
     class Meta:
         model = Review
         fields = ['value', 'body']
+
         labels = {
             'value': 'Поставьте оценку проекту',
             'body': 'Добавьте отзыв о проекте'
@@ -37,5 +40,6 @@ class ReviewForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ReviewForm, self).__init__(*args, **kwargs)
+
         for name, field in self.fields.items():
             field.widget.attrs.update({'class': 'input'})

@@ -1,13 +1,16 @@
-from .models import Project, Tag
-from .forms import ProjectForm, ReviewForm
-from django.shortcuts import render, redirect, get_object_or_404
+from django.core import paginator
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Project, Tag
+from .forms import ProjectForm, ReviewForm
+from .utils import paginateProjects, searchProjects
 
 
 def projects(request):
-    projects = Project.objects.all()
-    context = {'projects': projects}
+    projects, search_query = searchProjects(request)
+    custom_range, projects = paginateProjects(request, projects, 6)
+    context = {'projects': projects, 'search_query': search_query, 'custom_range': custom_range}
 
     return render(request, 'projects/projects.html', context)
 

@@ -1,16 +1,18 @@
 from django.urls import conf
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.dispatch.dispatcher import receiver
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Profile, Skill, Message
+from .utils import paginateProfiles, searchProfiles
 from .forms import CustomUserCreationForm, ProfileForm, SkillForm, MessageForm
 
 
 def loginUser(request):
     page = 'login'
+
     if request.user.is_authenticated:
         return redirect('profiles')
 
@@ -52,6 +54,7 @@ def registerUser(request):
             user.save()
 
             messages.success(request, 'Аккаунт успешно создан!')
+
             login(request, user)
             return redirect('edit-account')
         else:
@@ -61,10 +64,10 @@ def registerUser(request):
 
     return render(request, 'users/login_register.html', context)
 
-
 def profiles(request):
-    profiles = Profile.objects.all()
-    context = {'profiles': profiles}
+    profiles, search_query = searchProfiles(request)
+    custom_range, profiles = paginateProfiles(request, profiles, 6)
+    context = {'profiles': profiles, 'search_query': search_query, 'custom_range': custom_range}
 
     return render(request, 'users/profiles.html', context)
 
@@ -73,7 +76,7 @@ def userProfile(request, username):
     profile = Profile.objects.get(username=username)
     main_skills = profile.skills.all()[:2]
     extra_skills = profile.skills.all()[2:]
-    context = {'profile': profile, 'main_skills': main_skills, 'extra_skills': extra_skills}
+    context = {'profile': profile, 'main_skills': main_skills, "extra_skills": extra_skills}
 
     return render(request, 'users/user-profile.html', context)
 
@@ -81,9 +84,9 @@ def userProfile(request, username):
 def profiles_by_skill(request, skill_slug):
     skill = get_object_or_404(Skill, slug=skill_slug)
     profiles = Profile.objects.filter(skills__in=[skill])
-    context = {'profiles': profiles}
+    context = {"profiles": profiles}
 
-    return render(request, 'users/profiles.html', context)
+    return render(request, "users/profiles.html", context)
 
 
 @login_required(login_url='login')
@@ -154,6 +157,7 @@ def updateSkill(request, skill_slug):
 def deleteSkill(request, skill_slug):
     profile = request.user.profile
     skill = profile.skills.get(slug=skill_slug)
+
     if request.method == 'POST':
         skill.delete()
         messages.success(request, 'Навык успешно удален')
@@ -206,8 +210,8 @@ def createMessage(request, username):
             if sender:
                 message.name = sender.name
                 message.email = sender.email
-            message.save()
 
+            message.save()
             messages.success(request, 'Your message was successfully sent!')
             return redirect('user-profile', username=recipient.username)
 

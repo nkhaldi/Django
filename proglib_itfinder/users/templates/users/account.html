@@ -55,7 +55,8 @@
         </div>
         <div class="settings">
           <h3 class="settings__title">Стек и навыки</h3>
-          <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-skill' %}">
+          <a class="tag tag--pill tag--sub settings__btn tag--lg"
+            href="{% url 'create-skill' %}">
             <i class="im im-plus"></i> Добавить навык
           </a>
         </div>
@@ -67,10 +68,12 @@
                 <p>{{ skill.description }}</p>
               </td>
               <td class="settings__tableActions">
-                <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-skill' skill.slug %}">
+                <a class="tag tag--pill tag--main settings__btn"
+                  href="{% url 'update-skill' skill.slug %}">
                   <i class="im im-edit"></i>Изменить
                 </a>
-                <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-skill' skill.slug %}">
+                <a class="tag tag--pill tag--main settings__btn"
+                  href="{% url 'delete-skill' skill.slug %}">
                   <i class="im im-x-mark-circle-o"></i>Удалить
                 </a>
               </td>
@@ -79,7 +82,8 @@
         </table>
         <div class="settings">
           <h3 class="settings__title">Проекты</h3>
-          <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-project' %}">
+          <a class="tag tag--pill tag--sub settings__btn tag--lg"
+            href="{% url 'create-project' %}">
             <i class="im im-plus"></i>Добавить проект
           </a>
         </div>
@@ -96,10 +100,12 @@
                 <p>{{ project.description|slice:"150" }}</p>
               </td>
               <td class="settings__tableActions">
-                <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-project' project.id %}">
+                <a class="tag tag--pill tag--main settings__btn"
+                  href="{% url 'update-project' project.id %}">
                   <i class="im im-edit"></i>Редактировать
                 </a>
-                <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-project' project.id %}?next=/account">
+                <a class="tag tag--pill tag--main settings__btn"
+                  href="{% url 'delete-project' project.id %}?next=/account">
                   <i class="im im-x-mark-circle-o"></i>Удалить
                 </a>
               </td>

@@ -43,7 +43,9 @@
               {% endif %}
             </ul>
             {% if request.user.profile.id != profile.id %}
-              <a href="{% url 'create-message' profile.username %}" class="btn btn--sub btn--lg">Написать сообщение </a>
+              <a href="{% url 'create-message' profile.username %}"
+                class="btn btn--sub btn--lg">Написать сообщение
+              </a>
             {% endif %}
           </div>
         </div>
@@ -65,9 +67,10 @@
             <h3 class="devInfo__subtitle">Дополнительные навыки</h3>
             <div class="devInfo__otherSkills">
               {% for skill in extra_skills %}
-                <span class="tag tag--pill tag--sub tag--lg">
-                  <small>{{ skill }}</small>
-                </span>
+                <div class="devSkill">
+                  <h4 class="devSkill__title">{{ skill.name }}</h4>
+                  <p class="devSkill__info">{{ skill.description }}</p>
+                </div>
               {% endfor %}
             </div>
           </div>
@@ -79,15 +82,17 @@
               <div class="column">
                 <div class="card project">
                   <a href="{% url 'project' project.slug %}" class="project">
-                    <img class="project__thumbnail" src="{{ project.image.url }}"
-                      alt="project thumbnail" />
+                    <img class="project__thumbnail" src="{{ project.image.url }}" alt="project thumbnail" />
                     <div class="card__body">
                       <h3 class="project__title">{{ project.title }}</h3>
-                      <p><a class="project__author"
-                          href="{% url 'user-profile' project.owner %}">Разработчик: {{ project.owner.name }}</a>
+                      <p>
+                        <a class="project__author"
+                          href="{% url 'user-profile' project.owner %}">Разработчик: {{ project.owner.name }}
+                        </a>
                       </p>
                       <p class="project--rating">
-                        <span style="font-weight: bold;">Положительные отзывы</span>{{ project.votes_ratio }}% Всего отзывов{{ project.total_votes }}
+                        <span style="font-weight: bold;">Положительные отзывы</span>
+                        {{ project.votes_ratio }}% Всего отзывов{{ project.total_votes }}
                       </p>
                       <div class="project__tags">
                         {% for tag in project.tags.all %}
