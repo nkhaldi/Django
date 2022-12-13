@@ -3,7 +3,16 @@ from django.shortcuts import render
 
 
 def home(request):
-	return HttpResponse('<h1>Главная</h1>')
- 
+    return render(request, 'shop/home.html')
+
+
 def about(request):
-	return HttpResponse('<h1>Не главная</h1>')
+    return HttpResponse('<h1>О нас</h1>')
+
+
+def point1(request):
+    return HttpResponse('<h1>Точка 1</h1>')
+
+
+def point2(request):
+    return HttpResponse('<h1>Точка 2</h1>')
