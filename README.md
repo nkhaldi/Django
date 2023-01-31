@@ -10,3 +10,6 @@ Part 3: https://proglib.io/p/django-s-nulya-chast-3-sozdanie-profiley-szhatie-iz
 Part 1: https://proglib.io/p/sozdaem-rekrutingovyy-portal-na-django-chast-1-2022-07-18 <br>
 Part 2: https://proglib.io/p/sozdaem-rekrutingovyy-portal-na-django-chast-2-2022-07-20 <br>
 Part 3: https://proglib.io/p/sozdaem-rekrutingovyy-portal-na-django-chast-3-2022-07-22 <br>
+
+#### youtube_EngineerSpock - my django project based on youtube video course "Курс по Django"
+Link: https://www.youtube.com/playlist?list=PLBheEHDcG7-nyRX-kMT2jyudahDQ-A-Ss
