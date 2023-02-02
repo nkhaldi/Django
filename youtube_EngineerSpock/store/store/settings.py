@@ -82,7 +82,7 @@ AUTH_PASSWORD_VALIDATORS = [
 USE_TZ = True
 USE_I18N = True
 TIME_ZONE = 'UTC'
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
