@@ -31,7 +31,8 @@ def register(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('users:login'))
-    form = UserRegisterForm()
+    else:
+        form = UserRegisterForm()
 
     context = {
         'form': form,
