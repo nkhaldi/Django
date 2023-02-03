@@ -44,7 +44,9 @@ def register(request):
 
 def profile(request):
     if request.method == 'POST':
-        form = UserProfileFolm(instance=request.user, data=request.POST, files=request.FILES)
+        form = UserProfileFolm(
+            instance=request.user, data=request.POST, files=request.FILES
+        )
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('users:profile'))
