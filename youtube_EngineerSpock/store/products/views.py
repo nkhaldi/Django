@@ -7,19 +7,25 @@ from products.models import ProductCategory, Product, Basket
 def index(request):
     context = {
         'author': 'Narek',
-        'title': 'Shop',
-        'is_promotion': False
+        'is_promotion': False,
+        'title': 'Shop'
     }
 
     return render(request, 'products/index.html', context)
 
 
-def products(request):
+def products(request, category_id=None):
+    if category_id:
+        products = Product.objects.filter(category_id=category_id)
+    else:
+        products = Product.objects.all()
+
     context = {
-        'title': 'Store - Каталог',
-        'products': Product.objects.all(),
-        'categories': ProductCategory.objects.all()
+        'categories': ProductCategory.objects.all(),
+        'products': products,
+        'title': 'Store - Каталог'
     }
+
     return render(request, 'products/products.html', context)
 
 
