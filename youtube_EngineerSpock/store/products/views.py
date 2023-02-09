@@ -1,18 +1,20 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import render, HttpResponseRedirect
+from django.views.generic import TemplateView
 
 from products.models import ProductCategory, Product, Basket
 
 
-def index(request):
-    context = {
-        'author': 'Narek',
-        'is_promotion': False,
-        'title': 'Shop'
-    }
+class IndexView(TemplateView):
+    template_name = 'products/index.html'
 
-    return render(request, 'products/index.html', context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['author'] = 'Narek'
+        context['is_promotion'] = False
+        context['title'] = 'Shop'
+        return context
 
 
 def products(request, category_id=None, page=1):
