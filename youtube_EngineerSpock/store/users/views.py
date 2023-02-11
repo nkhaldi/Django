@@ -34,44 +34,27 @@ class UserRegisterView(CreateView):
     form_class = UserRegisterForm
     template_name = 'users/register.html'
     success_url = reverse_lazy('users:login')
+    # messages.success(request, 'Вы успешно зарегистрировались!')
 
-'''
-def register(request):
-    if request.method == 'POST':
-        form = UserRegisterForm(data=request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Вы успешно зарегистрировались!')
-            return HttpResponseRedirect(reverse('users:login'))
-    else:
-        form = UserRegisterForm()
-
-    context = {
-        'form': form,
-        'title': 'Store - Регистрация'
-    }
-    return render(request, 'users/register.html', context)
-'''
+    def get_context_data(self, **kwargs):
+        context = super(UserRegisterView, self).get_context_data()
+        context['title'] = 'Store - Регистрация'
+        return context
 
 
-@login_required
-def profile(request):
-    if request.method == 'POST':
-        form = UserProfileFolm(
-            instance=request.user, data=request.POST, files=request.FILES
-        )
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('users:profile'))
-    else:
-        form = UserProfileFolm(instance=request.user)
+class UserPrifileView(UpdateView):
+    model = User
+    form_class = UserProfileFolm
+    template_name = 'users/profile.html'
 
-    context = {
-        'baskets': Basket.objects.filter(user=request.user),
-        'form': form,
-        'title': 'Store - Профиль',
-    }
-    return render(request, 'users/profile.html', context)
+    def get_success_url(self):
+        return reverse_lazy('users:profile', args=(self.object.id,))
+
+    def get_context_data(self, **kwargs):
+        context = super(UserPrifileView, self).get_context_data()
+        context['title'] = 'Store - Профиль'
+        context['baskets'] = Basket.objects.filter(user=self.object)
+        return context
 
 
 @login_required
