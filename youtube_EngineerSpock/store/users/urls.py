@@ -13,4 +13,3 @@ urlpatterns = [
     path('profile/<int:pk>/', login_required(UserPrifileView.as_view()), name='profile'),
     path('logout/', login_required(LogoutView.as_view()), name='logout'),
 ]
-
