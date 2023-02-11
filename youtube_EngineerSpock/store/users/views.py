@@ -1,32 +1,16 @@
-from django.contrib import auth, messages
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, HttpResponseRedirect
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView
+from django.contrib.auth.views import LoginView
 
 from products.models import Basket
 from users.forms import UserLoginForm, UserRegisterForm, UserProfileFolm
 from users.models import User
 
 
-def login(request):
-    if request.method == 'POST':
-        form = UserLoginForm(data=request.POST)
-        if form.is_valid():
-            username = request.POST['username']
-            password = request.POST['password']
-            user = auth.authenticate(username=username, password=password)
-            if user:
-                auth.login(request, user)
-                return HttpResponseRedirect(reverse('index'))
-    else:
-        form = UserLoginForm
-
-    context = {
-        'form': form,
-        'title': 'Store - Авторизация'
-    }
-    return render(request, 'users/login.html', context)
+class UserLoginView(LoginView):
+    form_class = UserLoginForm
+    template_name = 'users/login.html'
+    success_url = reverse_lazy('index')
 
 
 class UserRegisterView(CreateView):
@@ -55,9 +39,3 @@ class UserPrifileView(UpdateView):
         context['title'] = 'Store - Профиль'
         context['baskets'] = Basket.objects.filter(user=self.object)
         return context
-
-
-@login_required
-def logout(request):
-    auth.logout(request)
-    return HttpResponseRedirect(reverse('index'))
