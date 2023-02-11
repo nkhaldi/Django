@@ -3,7 +3,6 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, HttpResponseRedirect
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
 
 from products.models import ProductCategory, Product, Basket
 
@@ -39,21 +38,19 @@ class ProductsListView(ListView):
         return context
 
 
-class BasketCreateView(CreateView):
-    model = Basket
+@login_required
+def basket_add(request, product_id):
+    product = Product.objects.get(id=product_id)
+    baskets = Basket.objects.filter(user=request.user, product=product)
 
-    def post(self, request, *args, **kwargs):
-        product = Product.objects.get(id=self.kwargs.get('product_id'))
-        baskets = Basket.objects.filter(user=request.user, product=product)
+    if not baskets.exists():
+        Basket.objects.create(user=request.user, product=product, quantity=1)
+    else:
+        basket = baskets.first()
+        basket.quantity += 1
+        basket.save()
 
-        if not baskets.exists():
-            Basket.objects.create(user=request.user, product=product, quantity=1)
-        else:
-            basket = baskets.first()
-            basket.quantity += 1
-            basket.save()
-
-        return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
 @login_required
