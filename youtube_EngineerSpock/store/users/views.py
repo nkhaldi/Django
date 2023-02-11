@@ -1,10 +1,12 @@
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, HttpResponseRedirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.views.generic.edit import CreateView, UpdateView
 
 from products.models import Basket
 from users.forms import UserLoginForm, UserRegisterForm, UserProfileFolm
+from users.models import User
 
 
 def login(request):
@@ -27,6 +29,13 @@ def login(request):
     return render(request, 'users/login.html', context)
 
 
+class UserRegisterView(CreateView):
+    model = User
+    form_class = UserRegisterForm
+    template_name = 'users/register.html'
+    success_url = reverse_lazy('users:login')
+
+'''
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(data=request.POST)
@@ -42,6 +51,7 @@ def register(request):
         'title': 'Store - Регистрация'
     }
     return render(request, 'users/register.html', context)
+'''
 
 
 @login_required
