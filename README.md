@@ -12,5 +12,5 @@ Part 2: https://proglib.io/p/sozdaem-rekrutingovyy-portal-na-django-chast-2-2022
 Part 3: https://proglib.io/p/sozdaem-rekrutingovyy-portal-na-django-chast-3-2022-07-22 <br>
 
 #### stepik_spock - my django project based on course "Курс по Django"
-Stepik: https://stepik.org/course/125859/
+Stepik: https://stepik.org/course/125859/ <br>
 YouTube: https://www.youtube.com/playlist?list=PLBheEHDcG7-nyRX-kMT2jyudahDQ-A-Ss
