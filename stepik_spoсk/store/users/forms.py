@@ -56,7 +56,7 @@ class UserRegisterForm(UserCreationForm):
             'username', 'email',
             'password1', 'password2'
         )
-    
+
     def save(self, commit=True):
         user = super(UserRegisterForm, self).save(commit=True)
         expiration = now() + timedelta(hours=48)
@@ -65,7 +65,6 @@ class UserRegisterForm(UserCreationForm):
         )
         record.send_verification_email()
         return user
-        
 
 
 class UserProfileFolm(UserChangeForm):
