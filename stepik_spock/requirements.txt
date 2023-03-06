@@ -1,5 +1,7 @@
 django
 django-allauth
+
+http
 pillow
 psycopg2
 uuid
