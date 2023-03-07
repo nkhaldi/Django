@@ -1,12 +1,11 @@
-from http import HTTPStatus
 from datetime import timedelta
+from http import HTTPStatus
 
 from django.test import TestCase
 from django.urls import reverse
 from django.utils.timezone import now
 
-from users.forms import UserRegisterForm
-from users.models import User, EmailVerification
+from users.models import EmailVerification, User
 
 
 class UserRegisterViewTestCase(TestCase):
@@ -17,7 +16,7 @@ class UserRegisterViewTestCase(TestCase):
             'username': 'testuser', 'email': 'testemail@meliksetyan.ru',
             'password1': '12345678pP', 'password2': '12345678pP',
         }
-    
+
     def test_user_registration_get(self):
         response = self.client.get(self.path)
 
