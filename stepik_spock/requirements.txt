@@ -1,5 +1,6 @@
 django
 django-allauth
+django-debug-toolbar
 django-redis
 
 http
