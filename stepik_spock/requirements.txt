@@ -3,6 +3,7 @@ django-allauth
 django-debug-toolbar
 django-redis
 
+celery
 http
 pillow
 psycopg2
