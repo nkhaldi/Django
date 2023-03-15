@@ -1,10 +1,16 @@
 django
 django-allauth
 django-debug-toolbar
+django-environ
+django-extensions
 django-redis
+djangorestframework
 
 celery
-http
 pillow
-psycopg2
-uuid
+redis
+stripe
+psycopg2-binary
+
+flake8
+isort
