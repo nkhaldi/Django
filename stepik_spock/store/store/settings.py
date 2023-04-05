@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.github',
     'debug_toolbar',
 
+    'orders',
     'products',
     'users',
 ]
