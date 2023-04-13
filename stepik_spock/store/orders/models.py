@@ -21,7 +21,7 @@ class Order(models.Model):
     address = models.CharField(max_length=256)
     basket_history = models.JSONField(default=dict)
     created = models.DateTimeField(auto_now_add=True)
-    status = models.SmallIntegerField(default=created, choices=STATUSES)
+    status = models.SmallIntegerField(default=CREATED, choices=STATUSES)
     initiator = models.ForeignKey(to=User, on_delete=models.CASCADE)
 
     def __str__(self):
