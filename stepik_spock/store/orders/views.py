@@ -10,6 +10,7 @@ from django.views.generic.edit import CreateView
 
 from common.views import TitleMixin
 from orders.forms import OrderForm
+from products.models import Basket
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -33,12 +34,11 @@ class OrderCreateView(TitleMixin, CreateView):
 
     def post(self, request, *args, **kwargs):
         super(OrderCreateView, self).post(request, *args, **kwargs)
+        baskets = Basket.objects.filter(user=self.request.user)
 
         checkout_session = stripe.checkout.Session.create(
             # Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-            line_items=[{
-                'price': 'price_1MwopQLdbAyRowZnvC8rGaPA', 'quantity': 1,
-            },],
+            line_items=baskets.stripe_products(),
             mode='payment',
             success_url='{}{}'.format(settings.DOMAIN_NAME, reverse('orders:order_success')),
             cancel_url='{}{}'.format(settings.DOMAIN_NAME, reverse('orders:order_canceled')),
@@ -59,17 +59,12 @@ def stripeWebhookView(request):
     try:
         event = stripe.Webhook.construct_event(payload, sig_header, endpoint_secret)
     except ValueError as e:
-        # Invalid payload
-        print(e)    # TODO replace to log
+        print(f"Invalid payload: {e}")      # TODO replace as log
         return HttpResponse(status=400)
     except stripe.error.SignatureVerificationError as e:
-        # Invalid signature
-        print(e)    # TODO replace to log
+        print(f"Invalid signature: {e}")    # TODO replace as log
         return HttpResponse(status=400)
 
-    # Handle the checkout.session.completed event
-    # Retrieve the session. If you require line items in the response,
-    # you may include them by expanding line_items.
     if event['type'] == 'checkout.session.completed':
         session = stripe.checkout.Session.retrieve(
             event['data']['object']['id'],
