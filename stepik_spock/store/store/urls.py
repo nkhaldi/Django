@@ -3,6 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+from orders.views import stripeWebhookView
 from products.views import IndexView
 
 urlpatterns = [
@@ -12,6 +13,7 @@ urlpatterns = [
     path('users/', include('users.urls', namespace='users')),
     path('accounts/', include('allauth.urls')),
     path('orders/', include('orders.urls', namespace='orders')),
+    path('webhook/stripe/', stripeWebhookView, name='stripe_webhook'),
 ]
 
 if settings.DEBUG:
