@@ -78,12 +78,12 @@ def stripeWebhookView(request):
 
         # Fulfill the purchase...
         line_items = session.line_items
-        fulfill_order(line_items)
+        fulfillOrder(line_items)
 
     # Passed signature verification
     return HttpResponse(status=200)
 
 
-def fulfill_order(line_items):
+def fulfillOrder(line_items):
     # TODO: fill me in
     print("Fulfilling order")
