@@ -10,6 +10,7 @@ from django.views.generic.edit import CreateView
 
 from common.views import TitleMixin
 from orders.forms import OrderForm
+from orders.models import Order
 from products.models import Basket
 
 
@@ -39,6 +40,7 @@ class OrderCreateView(TitleMixin, CreateView):
         checkout_session = stripe.checkout.Session.create(
             # Provide the exact Price ID (for example, pr_1234) of the product you want to sell
             line_items=baskets.stripe_products(),
+            metadata={'order_id': self.object.id},
             mode='payment',
             success_url='{}{}'.format(settings.DOMAIN_NAME, reverse('orders:order_success')),
             cancel_url='{}{}'.format(settings.DOMAIN_NAME, reverse('orders:order_canceled')),
@@ -66,19 +68,14 @@ def stripeWebhookView(request):
         return HttpResponse(status=400)
 
     if event['type'] == 'checkout.session.completed':
-        session = stripe.checkout.Session.retrieve(
-            event['data']['object']['id'],
-            expand=['line_items'],
-        )
-
-        # Fulfill the purchase...
-        line_items = session.line_items
-        fulfillOrder(line_items)
+        session = event['data']['object']
+        fulfillOrder(session)
 
     # Passed signature verification
     return HttpResponse(status=200)
 
 
-def fulfillOrder(line_items):
-    # TODO: fill me in
-    print("Fulfilling order")
+def fulfillOrder(session):
+    order_id = int(session.metadata.order_id)
+    order = Order.objects.get(id=order_id)
+    order.update_after_payment()
