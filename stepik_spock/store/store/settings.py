@@ -1,8 +1,8 @@
-import environ
-
 from pathlib import Path
 
-env = environ.Env(
+from environ import Env
+
+env = Env(
     DEBUG=(bool),
     DOMAIN_NAME=(str),
     SECRET_KEY=(str),
@@ -31,7 +31,7 @@ env = environ.Env(
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Take environment variables from .env file
-environ.Env.read_env(BASE_DIR / '.env')
+Env.read_env(BASE_DIR / '.env')
 
 DEBUG = env('DEBUG')
 
