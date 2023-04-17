@@ -43,7 +43,7 @@
                     </a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="{% url 'orders:orders_list' %}">
                       Заказы
                     </a>
                   </li>
@@ -55,7 +55,8 @@
                     </li>
                   {% endif %}
                   <li>
-                    <hr class="dropdown-divider"></li>
+                    <hr class="dropdown-divider">
+                  </li>
                   <li>
                     <a class="dropdown-item" href="{% url 'users:logout' %}">
                       Выйти
