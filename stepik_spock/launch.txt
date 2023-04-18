@@ -1,0 +1,4 @@
+redis-server
+celery -A store worker
+stripe listen --forward-to 127.0.0.1:8000/webhook/stripe/
+python3 manage.py runserver 127.0.0.1:8000
