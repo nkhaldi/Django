@@ -91,3 +91,18 @@ class Basket(models.Model):
             'sum': float(self.sum())
         }
         return basket_item
+
+    @classmethod
+    def create_or_update(cls, product_id, user):
+        baskets = Basket.objects.filter(user=user, product_id=product_id)
+
+        if baskets.exists():
+            basket = baskets.first()
+            basket.quantity += 1
+            basket.save()
+            is_crated = False
+            return basket, is_crated
+        else:
+            new_basket = Basket.objects.create(user=user, product_id=product_id, quantity=1)
+            is_created = True
+            return new_basket, is_created
