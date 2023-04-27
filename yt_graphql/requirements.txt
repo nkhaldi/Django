@@ -4,5 +4,7 @@ django-debug-toolbar
 django-environ
 django-extensions
 
+graphene-django
+
 flake8
 isort
