@@ -4,6 +4,9 @@ django-debug-toolbar
 django-environ
 django-extensions
 
+graphene-django
+
+pillow
 psycopg2-binary
 
 flake8
