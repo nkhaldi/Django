@@ -38,4 +38,15 @@ class Query(graphene.ObjectType):
         return Answer.objects.filter(question=id)
 
 
-schema = graphene.Schema(query=Query)
+class CategoryMutation(graphene.Mutation):
+    class Arguments:
+        name = graphene.String(required=True)
+
+    category = graphene.Field(CategoryType)
+
+
+class Mutation(graphene.ObjectType):
+    update_category = CategoryMutation.Field()
+
+
+schema = graphene.Schema(query=Query, mutation=Mutation)
