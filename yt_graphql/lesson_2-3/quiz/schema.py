@@ -12,7 +12,7 @@ class CategoryType(DjangoObjectType):
 class QuizzesType(DjangoObjectType):
     class Meta:
         model = Quizzes
-        fields = ('id', 'title', 'category', 'quiz')
+        fields = ('id', 'title', 'category')
 
 
 class QuestionType(DjangoObjectType):
@@ -43,6 +43,12 @@ class CategoryMutation(graphene.Mutation):
         name = graphene.String(required=True)
 
     category = graphene.Field(CategoryType)
+
+    @classmethod
+    def mutate(root, info, name):
+        category = Category(name=name)
+        category.save()
+        return CategoryMutation(category=category)
 
 
 class Mutation(graphene.ObjectType):
