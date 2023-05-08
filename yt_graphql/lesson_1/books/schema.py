@@ -1,7 +1,6 @@
 import graphene
-from graphene_django import DjangoObjectType
-
 from books.models import Books
+from graphene_django import DjangoObjectType
 
 
 class BooksType(DjangoObjectType):

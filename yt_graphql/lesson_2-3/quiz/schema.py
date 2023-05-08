@@ -1,6 +1,5 @@
 import graphene
 from graphene_django import DjangoObjectType
-
 from quiz.models import Answer, Category, Question, Quizzes
 
 
