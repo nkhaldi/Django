@@ -20,8 +20,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'graphene_django',
-    'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
     'graphql_auth',
+    'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
+    'django_filters',
+
 
     'users',
 ]

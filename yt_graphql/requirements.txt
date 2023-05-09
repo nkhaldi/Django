@@ -4,6 +4,7 @@ django-allauth
 django-debug-toolbar
 django-environ
 django-extensions
+django-filter
 
 # GraphQL
 django-graphql-auth
