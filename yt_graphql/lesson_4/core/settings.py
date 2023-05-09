@@ -24,7 +24,6 @@ INSTALLED_APPS = [
     'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
     'django_filters',
 
-
     'users',
 ]
 
@@ -104,6 +103,12 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
+
+GRAPHQL_AUTH = {
+    'EMAIL_FROM': 'narek-project@yandex.ru',
+}
+
+
 GRAPHQL_JWT = {
     'JWT_ALLOW_ANY_CLASSES': [
         'graphql_auth.mutations.Register',
@@ -116,7 +121,14 @@ GRAPHQL_JWT = {
 
 
 # Email
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    EMAIL_HOST = 'smtp.yandex.com'
+    EMAIL_PORT = 465
+    EMAIL_HOST_USER = 'narek-project@yandex.ru'
+    EMAIL_HOST_PASSWORD = 'ybkswtxqhqhafadc'
+    EMAIL_USE_SSL = True
 
 
 # Internationalization
