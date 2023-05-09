@@ -1,5 +1,6 @@
 from django.apps import apps
 from django.contrib import admin
+
 from users.models import User
 
 admin.site.register(User)
