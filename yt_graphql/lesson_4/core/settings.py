@@ -104,6 +104,20 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
+GRAPHQL_JWT = {
+    'JWT_ALLOW_ANY_CLASSES': [
+        'graphql_auth.mutations.Register',
+        'graphql_auth.mutations.VerifyAccount',
+        'graphql_auth.mutations.ObtainJSONWebToken',
+    ],
+    'JWT_VERIFY_EXPIRATION': True,
+    'JWT_LONG_RUNNING_REFRESH_TOKEN': True,
+}
+
+
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'
@@ -115,8 +129,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
 
+
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Email
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
