@@ -9,6 +9,7 @@ django-filter
 # GraphQL
 django-graphql-auth
 django-graphql-jwt
+django-graphql-social-auth[jwt]
 graphene-django
 
 flake8
