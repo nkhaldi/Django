@@ -19,10 +19,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_filters',
     'graphene_django',
     'graphql_auth',
     'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
-    'django_filters',
+    'social_django',
 
     'users',
 ]
@@ -88,6 +89,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'graphql_auth.backends.GraphQLAuthBackend',
+    'social_core.backends.google.GoogleOAuth2',
+]
+
 
 # GraphQL
 
@@ -98,16 +105,9 @@ GRAPHENE = {
     ],
 }
 
-AUTHENTICATION_BACKENDS = [
-    'graphql_auth.backends.GraphQLAuthBackend',
-    'django.contrib.auth.backends.ModelBackend',
-]
-
-
 GRAPHQL_AUTH = {
     'EMAIL_FROM': 'narek-project@yandex.ru',
 }
-
 
 GRAPHQL_JWT = {
     'JWT_ALLOW_ANY_CLASSES': [

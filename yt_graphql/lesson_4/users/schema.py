@@ -2,6 +2,8 @@ import graphene
 from graphql_auth import mutations
 from graphql_auth.schema import MeQuery, UserQuery
 
+from graphql_social_auth import SocialAuthJWT
+
 
 class AuthMutation(graphene.ObjectType):
     register = mutations.Register.Field()
@@ -22,6 +24,8 @@ class AuthMutation(graphene.ObjectType):
     verify_token = mutations.VerifyToken.Field()
     refresh_token = mutations.RefreshToken.Field()
     revoke_token = mutations.RevokeToken.Field()
+
+    social_auth = SocialAuthJWT.Field()
 
 
 class Query(UserQuery, MeQuery, graphene.ObjectType):
