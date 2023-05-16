@@ -25,7 +25,7 @@ class UserRegisterView(TitleMixin, SuccessMessageMixin, CreateView):
     title = 'Store - Регистрация'
 
 
-class UserPrifileView(TitleMixin, UpdateView):
+class UserProfileView(TitleMixin, UpdateView):
     model = User
     form_class = UserProfileFolm
     template_name = 'users/profile.html'
