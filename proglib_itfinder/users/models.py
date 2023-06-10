@@ -23,7 +23,12 @@ class Profile(models.Model):
     city = models.CharField(max_length=50, blank=True, null=True)
     intro = models.CharField(max_length=200, blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
-    image = models.ImageField(null=True, blank=True, upload_to='profile_images', default="profile_images/default.jpg")
+    image = models.ImageField(
+        null=True,
+        blank=True,
+        upload_to="profile_images",
+        default="profile_images/default.jpg",
+    )
     skills = models.ManyToManyField(Skill, blank=True)
     github = models.CharField(max_length=100, blank=True, null=True)
     twitter = models.CharField(max_length=100, blank=True, null=True)
@@ -37,12 +42,18 @@ class Profile(models.Model):
         return str(self.username)
 
     class Meta:
-        ordering = ['created']
+        ordering = ["created"]
 
 
 class Message(models.Model):
     sender = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
-    recipient = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True, related_name="messages")
+    recipient = models.ForeignKey(
+        Profile,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="messages",
+    )
     name = models.CharField(max_length=200, null=True, blank=True)
     email = models.EmailField(max_length=200, null=True, blank=True)
     subject = models.CharField(max_length=200, null=True, blank=True)
@@ -55,4 +66,4 @@ class Message(models.Model):
         return self.subject
 
     class Meta:
-        ordering = ['is_read', '-created']
+        ordering = ["is_read", "-created"]

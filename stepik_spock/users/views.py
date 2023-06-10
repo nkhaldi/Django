@@ -12,36 +12,36 @@ from users.models import EmailVerification, User
 
 class UserLoginView(TitleMixin, LoginView):
     form_class = UserLoginForm
-    template_name = 'users/login.html'
-    title = 'Store - Авторизация'
+    template_name = "users/login.html"
+    title = "Store - Авторизация"
 
 
 class UserRegisterView(TitleMixin, SuccessMessageMixin, CreateView):
     model = User
     form_class = UserRegisterForm
-    template_name = 'users/register.html'
-    success_url = reverse_lazy('users:login')
-    success_message = 'Вы успешно зарегистрировались!'
-    title = 'Store - Регистрация'
+    template_name = "users/register.html"
+    success_url = reverse_lazy("users:login")
+    success_message = "Вы успешно зарегистрировались!"
+    title = "Store - Регистрация"
 
 
 class UserProfileView(TitleMixin, UpdateView):
     model = User
     form_class = UserProfileFolm
-    template_name = 'users/profile.html'
-    title = 'Store - Профиль'
+    template_name = "users/profile.html"
+    title = "Store - Профиль"
 
     def get_success_url(self):
-        return reverse_lazy('users:profile', args=(self.object.id,))
+        return reverse_lazy("users:profile", args=(self.object.id,))
 
 
 class EmailVerificationView(TitleMixin, TemplateView):
-    title = 'Store - Подтверждение электронной почты'
-    template_name = 'users/email_verification.html'
+    title = "Store - Подтверждение электронной почты"
+    template_name = "users/email_verification.html"
 
     def get(self, request, *args, **kwargs):
-        code = kwargs['code']
-        user = User.objects.get(email=kwargs['email'])
+        code = kwargs["code"]
+        user = User.objects.get(email=kwargs["email"])
         email_verifications = EmailVerification.objects.filter(user=user, code=code)
 
         if email_verifications.exists() and not email_verifications.first().is_expired():
@@ -49,4 +49,4 @@ class EmailVerificationView(TitleMixin, TemplateView):
             user.save()
             return super(EmailVerificationView, self).get(request, *args, **kwargs)
         else:
-            return HttpResponseRedirect(reverse('index'))
+            return HttpResponseRedirect(reverse("index"))

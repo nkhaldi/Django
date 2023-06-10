@@ -9,19 +9,19 @@ from products.models import Basket, Product, ProductCategory
 
 
 class IndexView(TitleMixin, TemplateView):
-    template_name = 'products/index.html'
-    title = 'Narek\'s'
+    template_name = "products/index.html"
+    title = "Narek's"
 
 
 class ProductsListView(TitleMixin, ListView):
     model = Product
-    template_name = 'products/products.html'
+    template_name = "products/products.html"
     paginate_by = 3
-    title = 'Store - Каталог'
+    title = "Store - Каталог"
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        category_id = self.kwargs.get('category_id')
+        category_id = self.kwargs.get("category_id")
 
         if category_id:
             return queryset.filter(category_id=category_id)
@@ -30,12 +30,12 @@ class ProductsListView(TitleMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        categories = cache.get('categories')
+        categories = cache.get("categories")
         if not categories:
             categories = ProductCategory.objects.all()
-            cache.set('categories', categories, 60)
+            cache.set("categories", categories, 60)
 
-        context['categories'] = categories
+        context["categories"] = categories
 
         return context
 
@@ -43,11 +43,11 @@ class ProductsListView(TitleMixin, ListView):
 @login_required
 def basket_add(request, product_id):
     Basket.create_or_update(product_id, request.user)
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    return HttpResponseRedirect(request.META["HTTP_REFERER"])
 
 
 @login_required
 def basket_remove(request, basket_id):
     basket = Basket.objects.get(id=basket_id)
     basket.delete()
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    return HttpResponseRedirect(request.META["HTTP_REFERER"])

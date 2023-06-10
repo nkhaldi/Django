@@ -3,12 +3,12 @@ from rest_framework import routers
 
 from api.views import BasketModelViewSet, ProductModelViewSet
 
-app_name = 'api'
+app_name = "api"
 
 router = routers.DefaultRouter()
-router.register(r'products', ProductModelViewSet)
-router.register(r'baskets', BasketModelViewSet)
+router.register(r"products", ProductModelViewSet)
+router.register(r"baskets", BasketModelViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path("", include(router.urls)),
 ]

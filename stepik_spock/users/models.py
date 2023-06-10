@@ -7,7 +7,7 @@ from django.utils.timezone import now
 
 
 class User(AbstractUser):
-    image = models.ImageField(upload_to='users_images', null=True, blank=True)
+    image = models.ImageField(upload_to="users_images", null=True, blank=True)
     is_verified_email = models.BooleanField(default=False)
 
 
@@ -21,13 +21,12 @@ class EmailVerification(models.Model):
         return f"EmailVerification object for {self.user.email}"
 
     def send_verification_email(self):
-        link_kwargs = {'email': self.user.email, 'code': self.code}
-        link = reverse('users:email_verification', kwargs=link_kwargs)
+        link_kwargs = {"email": self.user.email, "code": self.code}
+        link = reverse("users:email_verification", kwargs=link_kwargs)
         verification_link = settings.DOMAIN_NAME + link
         subject = f"Подверждение учетной записи для {self.user.username}"
-        message = 'Для подверждения учетной записи для {} перейдите по ссылке: {}'.format(
-            self.user.email,
-            verification_link
+        message = "Для подверждения учетной записи для {} перейдите по ссылке: {}".format(
+            self.user.email, verification_link
         )
 
         send_mail(

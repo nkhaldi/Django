@@ -4,14 +4,13 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('users', '0002_auto_20230212_2021'),
+        ("users", "0002_auto_20230212_2021"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='EmailVelification',
-            new_name='EmailVerification',
+            old_name="EmailVelification",
+            new_name="EmailVerification",
         ),
     ]
